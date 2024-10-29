@@ -1,0 +1,35 @@
+MySql - Open free 
+
+DDL - Data Definition Language
+
+DML - Data Manipulation Language
+
+count()
+min()
+max()
+distinct()
+top()
+sum()
+
+ where
+
+ between
+
+ order by
+
+ in
+
+ and or not
+
+ having
+ 
+ group by
+
+
+
+ inner join
+left join
+right join
+outer join
+full join
+

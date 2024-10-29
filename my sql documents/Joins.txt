@@ -1,0 +1,25 @@
+SQL JOINS
+SQL INNER JOIN
+SQL LEFT JOIN
+SQL RIGHT JOIN
+SQL FULL OUTER JOIN
+SQL CROSS JOIN
+SQL Self JOIN
+
+The SQL JOIN statement is used to combine rows from two tables based on a common column and selects records that have matching values in these columns
+---
+SQL JOIN Syntax
+---
+
+SELECT columns_from_both_tables
+FROM table1
+JOIN table2
+ON table1.column1 = table2.column2
+
+
+-- join three tables: Customers, Orders, and Shippings
+
+SELECT Customers.first_name, Orders.item, Shippings.status
+FROM Customers
+JOIN Orders ON Customers.customer_id = Orders.customer_id
+JOIN Shippings ON Customers.customer_id = Shippings.customer;

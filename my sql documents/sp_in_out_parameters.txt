@@ -1,0 +1,75 @@
+A stored procedure can have zero or more INPUT and OUTPUT parameters.
+A stored procedure can have a maximum of 2100 parameters specified.
+Each parameter is assigned a name,
+a data type, 
+and direction like Input, Output, or Return.
+ If a direction is not specified, then by default, it is Input.
+You can specify a default value for the parameters.
+
+Stored procedures can return a value to the calling program
+if the parameter is specified as OUTPUT.
+
+The parameter values must be a constant or a variable. 
+It cannot be a function name.
+Parameter variables can be either user-defined or system 
+variables like @spid
+
+--
+CREATE PROCEDURE uspUpdateEmpSalary
+(
+     @empId int
+     ,@salary money
+)
+AS
+BEGIN
+    UPDATE dbo.Employee
+    SET Salary = @salary
+    WHERE EmployeeID = @empId
+END
+----
+
+OUTPUT Parameters
+The OUTPUT parameter is used when you want to return some 
+value from the stored procedure. The calling program 
+must also use the OUTPUT keyword while executing the procedure.
+
+CREATE PROCEDURE uspGetManagerID  
+   @empId int,  
+   @managerId int OUTPUT  
+AS  
+BEGIN  
+   SELECT @managerId = ManagerID
+   FROM dbo.Employee
+   WHERE EmployeeID = @empId  
+END
+
+---
+DECLARE @managerID int
+
+EXECUTE uspGetManagerID @empId = 2, @managerId OUTPUT
+
+PRINT @managerId
+--
+Optional Parameters
+----
+SQL Server allows you to specify the default values for parameters.
+ It allows you to skip the parameters that have default values 
+when calling a stored procedure.
+
+The default value is used when no value is passed to 
+the parameter or when the DEFAULT keyword is specified as
+ the value in the procedure call.
+--
+CREATE PROCEDURE uspUpdateEmpSalary
+(
+     @empId int
+     ,@salary money = 1000
+)
+AS
+BEGIN
+    UPDATE dbo.Employee
+    SET Salary = @salary
+    WHERE EmployeeID = @empId
+END
+---
+EXEC uspUpdateEmpSalary 4

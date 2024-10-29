@@ -1,0 +1,14 @@
+SELECT * FROM employees
+WHERE wage > (SELECT AVG(wage) FROM employees)
+----
+
+SELECT name, country, wage FROM employees 
+WHERE country IN (SELECT country 
+         FROM employees 
+         WHERE country = 'USA') ;
+
+-----
+
+SELECT name, wage FROM employees
+WHERE name IN ('Denis Jack', 'Ola Ajayi', 'Uche Ugo');
+----
